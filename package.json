@@ -1,0 +1,79 @@
+{
+  "name": "power-plant-cli-amz",
+  "version": "1.0.0",
+  "description": "Planete OUI power plant CLI.",
+  "author": "Alex-Mehdi Zahid",
+  "email": "alexmehdi.dev@gmail.com",
+  "license": "GPL-3.0-or-later",
+  "main": "index.js",
+  "scripts": {
+    "audit": "npm audit",
+    "build": "npm run clean:build && tsc",
+    "check-outdate": "npm outdate",
+    "clean:build": "rimraf ./bin",
+    "clean:coverage": "rimraf ./coverage",
+    "clean:logs": "rimraf ./logs",
+    "clean": "npm run clean:build && npm run clean:logs && npm run clean:coverage",
+    "format": "npm run prettier-format && npm run lint",
+    "lint": "eslint . --ext .ts",
+    "package": "npm run format && npm run test:prepare && npm run test:ci && npm run build && npm pack",
+    "pre-commit": "npm run format && npm run test",
+    "prettier-format:darwin:linux": "prettier --config .prettierrc 'src/**/*.ts' 'tests/**/*.ts' --write",
+    "prettier-format:default": "prettier --config .prettierrc 'src/**/*.ts' 'tests/**/*.ts' --write",
+    "prettier-format:win32": "prettier --config .prettierrc \"./src/**/*.ts\" \"./tests/**/*.ts\" --write",
+    "prettier-format": "run-script-os",
+    "prettier-watch:darwin:linux": "onchange 'src/**/*.ts' 'tests/**/*.ts' -- prettier --write {{changed}}",
+    "prettier-watch:default": "onchange 'src/**/*.ts' 'tests/**/*.ts' -- prettier --write {{changed}}",
+    "prettier-watch:win32": "onchange \"src/**/*.ts\" \"tests/**/*.ts\" -- prettier --write {{changed}}",
+    "prettier-watch": "run-script-os",
+    "start:dev-watch": "nodemon",
+    "start:dev": "npm run build && node -r dotenv/config bin/index.js",
+    "start": "node -r dotenv/config bin/index.js",
+    "test:prepare": "cp tests/.env.test.example tests/.env.test",
+    "test:ci": "npm cit",
+    "test:dev": "jest --watchAll",
+    "test": "jest --forceExit --detectOpenHandles --verbose"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "lodash.groupby": "^4.6.0",
+    "meow": "^8.0.0",
+    "moment": "^2.29.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
+  },
+  "files": [
+    "bin/**/*",
+    ".env.example",
+    "package-lock.json"
+  ],
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/lodash.groupby": "^4.6.6",
+    "@types/node": "^14.14.10",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^4.8.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "jest": "^26.5.3",
+    "nodemon": "^2.0.6",
+    "onchange": "^7.1.0",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.0",
+    "run-script-os": "^1.1.1",
+    "ts-jest": "^26.4.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  }
+}

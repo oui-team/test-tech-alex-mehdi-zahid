@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "vscode: Install Plugins",
+      "type": "shell",
+      "command": "chmod +x ./.vscode/extensions.list | ./.vscode/extensions.list",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+  ]
+}

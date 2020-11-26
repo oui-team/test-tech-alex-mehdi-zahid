@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "configurations": [
+    {
+      "name": "Debug with get-total-power",
+      "preLaunchTask": "npm: build",
+      "program": "${workspaceFolder}/src/index.ts",
+      "request": "launch",
+      "args": [
+            "get-total-power",
+            "--from",
+            "01-01-2020",
+            "--to",
+            "01-05-2020",
+            "--format",
+            "json"
+          ],
+          "runtimeArgs": [
+              "-r",
+              "dotenv/config",
+          ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "sourceMaps": true,
+      "type": "pwa-node"
+    },
+  ]
+}
